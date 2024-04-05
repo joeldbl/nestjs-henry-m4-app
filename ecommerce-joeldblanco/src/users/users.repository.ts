@@ -37,7 +37,7 @@ export class UserRepository {
   }
 
   async create(user: CreateUserDto): Promise<number> {
-    const id = this.users.length;
+    const id = this.users.length + 1;
     return await this.users.push({ id, ...user });
   }
 

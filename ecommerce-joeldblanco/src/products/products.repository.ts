@@ -1,8 +1,11 @@
 import { Injectable } from '@nestjs/common';
+import { UpdateProductDto } from './dto/update-product.dto';
+import { Product } from './entities/product.entity';
+import { CreateProductDto } from './dto/create-product.dto';
 
 @Injectable()
 export class ProductsRepository {
-  private products = [
+  private products: Product[] = [
     {
       id: 1,
       name: 'iPhone 12',
@@ -30,11 +33,35 @@ export class ProductsRepository {
     },
   ];
 
-  async getProducts() {
+  async getProducts(): Promise<Product[]> {
     return await this.products;
   }
 
-  async getProductById(id: number) {
+  async getProductById(id: number): Promise<Product | undefined> {
     return await this.products.find((product) => product.id === id);
+  }
+
+  async create(product: CreateProductDto): Promise<number> {
+    const id = this.products.length + 1;
+    return await this.products.push({ id, ...product });
+  }
+
+  async update(
+    id: number,
+    updateProductDto: UpdateProductDto,
+  ): Promise<number> {
+    this.products = await this.products.map((product) => {
+      if (product.id === id) {
+        return { ...product, ...updateProductDto };
+      }
+      return product;
+    });
+
+    return id;
+  }
+
+  async delete(id: number): Promise<number> {
+    this.products = await this.products.filter((product) => product.id !== id);
+    return id;
   }
 }
