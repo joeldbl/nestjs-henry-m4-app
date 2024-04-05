@@ -33,4 +33,8 @@ export class ProductsRepository {
   async getProducts() {
     return await this.products;
   }
+
+  async getProductById(id: number) {
+    return await this.products.find((product) => product.id === id);
+  }
 }

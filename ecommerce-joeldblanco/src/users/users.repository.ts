@@ -28,4 +28,8 @@ export class UserRepository {
   async getUsers() {
     return await this.users;
   }
+
+  async getUserById(id: number) {
+    return await this.users.find((user) => user.id === id);
+  }
 }
