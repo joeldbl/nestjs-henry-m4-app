@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './entities/user.entity';
 import { UpdateUserDto } from './dto/update-user.dto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserRepository {
@@ -226,7 +227,14 @@ export class UserRepository {
 
   async create(user: CreateUserDto): Promise<number> {
     const id = this.users.length + 1;
-    return await this.users.push({ id, ...user });
+    const { password, ...toSaveUser } = user;
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    return await this.users.push({
+      id,
+      ...toSaveUser,
+      password: hashedPassword,
+    });
   }
 
   async update(id: number, updateUserDto: UpdateUserDto): Promise<number> {

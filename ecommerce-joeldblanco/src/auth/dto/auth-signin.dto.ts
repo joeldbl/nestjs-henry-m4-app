@@ -6,5 +6,5 @@ export class AuthSigninDto {
   email: string;
 
   @IsString()
-  password: string;
+  pass: string;
 }
