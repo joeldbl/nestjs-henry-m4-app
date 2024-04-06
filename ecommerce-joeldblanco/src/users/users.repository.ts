@@ -220,6 +220,10 @@ export class UserRepository {
     return await this.users.find((user) => user.id === id);
   }
 
+  async getUserByEmail(email: string): Promise<User | undefined> {
+    return await this.users.find((user) => user.email === email);
+  }
+
   async create(user: CreateUserDto): Promise<number> {
     const id = this.users.length + 1;
     return await this.users.push({ id, ...user });
