@@ -13,8 +13,8 @@ export class UsersService {
     return newUserId;
   }
 
-  async findAll(): Promise<User[]> {
-    return await this.userRepository.getUsers();
+  async findAll(page: number, limit: number): Promise<User[]> {
+    return await this.userRepository.getUsers(page, limit);
   }
 
   async findOne(id: number): Promise<User | undefined> {
