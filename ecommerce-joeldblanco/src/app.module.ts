@@ -10,6 +10,8 @@ import typeOrmConfig from './config/typeorm';
 import { DataSourceOptions } from 'typeorm';
 import { CategoriesModule } from './categories/categories.module';
 import { OrdersModule } from './orders/orders.module';
+import { Product } from './products/entities/product.entity';
+import { Category } from './categories/entities/category.entity';
 
 @Module({
   imports: [
@@ -22,6 +24,7 @@ import { OrdersModule } from './orders/orders.module';
       useFactory: (configService: ConfigService) =>
         configService.get('typeorm') as DataSourceOptions,
     }),
+    TypeOrmModule.forFeature([Product, Category]),
     UsersModule,
     ProductsModule,
     AuthModule,

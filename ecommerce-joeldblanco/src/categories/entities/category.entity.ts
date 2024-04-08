@@ -6,10 +6,12 @@ import {
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
+  Unique,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 
 @Entity()
+@Unique(['name'])
 export class Category {
   @PrimaryGeneratedColumn('uuid')
   id: string = uuid();

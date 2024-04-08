@@ -20,9 +20,6 @@ export class CategoriesController {
     return this.categoriesService.create(createCategoryDto);
   }
 
-  @Post('seeder')
-  categoriesSeeder() {}
-
   @Get()
   findAll() {
     return this.categoriesService.findAll();

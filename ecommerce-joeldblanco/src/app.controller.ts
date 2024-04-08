@@ -9,4 +9,14 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
+
+  @Get('categories/seeder')
+  categoriesSeeder() {
+    this.appService.seedCategories();
+  }
+
+  @Get('products/seeder')
+  productsSeeder() {
+    this.appService.seedProducts();
+  }
 }
