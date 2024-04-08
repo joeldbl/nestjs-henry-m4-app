@@ -1,12 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from './products/entities/product.entity';
-import { ProductsRepository } from './products/products.repository';
 import { Repository } from 'typeorm';
 import { Category } from './categories/entities/category.entity';
-import * as fs from 'fs';
-import path, { dirname, parse } from 'path';
-import { CreateCategoryDto } from './categories/dto/create-category.dto';
+import * as data from './helpers/data.json';
 
 @Injectable()
 export class AppService {
@@ -22,6 +19,7 @@ export class AppService {
     return 'Hello World!';
   }
 
+  //TODO: Refactor this to start using EntityManager methods from TypeORM
   async seedCategories() {
     type DataProduct = {
       name: string;
@@ -32,12 +30,8 @@ export class AppService {
     };
 
     try {
-      const data = await fs.promises.readFile('./src/helpers/data.js', 'utf8');
-
-      const parsedData = JSON.parse(data);
-
       const categoriesNamesSet: Set<string> = new Set(
-        parsedData.map((product: DataProduct) => product.category),
+        data.map((product: DataProduct) => product.category),
       );
 
       const categoriesNamesArray: string[] = Array.from(categoriesNamesSet);
@@ -51,6 +45,7 @@ export class AppService {
     }
   }
 
+  //TODO: Refactor this to start using EntityManager methods from TypeORM
   async seedProducts() {
     type DataProduct = {
       name: string;
@@ -61,23 +56,17 @@ export class AppService {
     };
 
     try {
-      const data = await fs.promises.readFile('./src/helpers/data.js', 'utf8');
-
-      const parsedData = JSON.parse(data);
-
       const products = await Promise.all(
-        parsedData.map(async (product: DataProduct) => {
+        data.map(async (product: DataProduct) => {
           const { category, ...productWithoutCategory } = product;
-
           const categoryObject = await this.categoryRepository.findOneBy({
             name: category,
           });
-
           return { categoryObject, ...productWithoutCategory };
         }),
       );
 
-      products.forEach(async (product: Product) => {
+      products.forEach(async (product) => {
         const toSaveProduct = this.productsRepository.create(product);
         await this.productsRepository.save(toSaveProduct);
       });
