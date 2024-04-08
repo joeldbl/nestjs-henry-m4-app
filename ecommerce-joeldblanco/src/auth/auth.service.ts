@@ -7,17 +7,17 @@ import * as bcrypt from 'bcrypt';
 export class AuthService {
   constructor(private readonly userRepository: UserRepository) {}
 
-  async authSignin(authSigninDto: AuthSigninDto) {
-    const { email, pass } = authSigninDto;
+  // async authSignin(authSigninDto: AuthSigninDto) {
+  //   const { email, pass } = authSigninDto;
 
-    const user = await this.userRepository.getUserByEmail(email);
-    if (!user) throw new UnauthorizedException();
+  //   const user = await this.userRepository.getUserByEmail(email);
+  //   if (!user) throw new UnauthorizedException();
 
-    const passwordCompare = await bcrypt.compare(pass, user.password);
-    if (!passwordCompare) throw new UnauthorizedException();
+  //   const passwordCompare = await bcrypt.compare(pass, user.password);
+  //   if (!passwordCompare) throw new UnauthorizedException();
 
-    const { password, ...result } = user;
+  //   const { password, ...result } = user;
 
-    return result;
-  }
+  //   return result;
+  // }
 }

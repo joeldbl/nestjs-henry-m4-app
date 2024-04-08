@@ -8,7 +8,7 @@ import { Product } from './entities/product.entity';
 export class ProductsService {
   constructor(private readonly productsRepository: ProductsRepository) {}
 
-  async create(createProductDto: CreateProductDto): Promise<number> {
+  async create(createProductDto: CreateProductDto): Promise<string> {
     return await this.productsRepository.create(createProductDto);
   }
 
@@ -16,18 +16,18 @@ export class ProductsService {
     return await this.productsRepository.getProducts();
   }
 
-  async findOne(id: number): Promise<Product | undefined> {
-    return await this.productsRepository.getProductById(+id);
+  async findOne(id: string): Promise<Product | undefined> {
+    return await this.productsRepository.getProductById(id);
   }
 
   async update(
-    id: number,
+    id: string,
     updateProductDto: UpdateProductDto,
-  ): Promise<number> {
+  ): Promise<string> {
     return await this.productsRepository.update(id, updateProductDto);
   }
 
-  async remove(id: number): Promise<number> {
+  async remove(id: string): Promise<string> {
     return await this.productsRepository.delete(id);
   }
 }

@@ -8,7 +8,7 @@ import { User } from './entities/user.entity';
 export class UsersService {
   constructor(private readonly userRepository: UserRepository) {}
 
-  create(createUserDto: CreateUserDto): Promise<number> {
+  create(createUserDto: CreateUserDto): Promise<string> {
     const newUserId = this.userRepository.create(createUserDto);
     return newUserId;
   }
@@ -17,15 +17,15 @@ export class UsersService {
     return await this.userRepository.getUsers(page, limit);
   }
 
-  async findOne(id: number): Promise<User | undefined> {
-    return await this.userRepository.getUserById(+id);
+  async findOne(id: string): Promise<User | undefined> {
+    return await this.userRepository.getUserById(id);
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto) {
+  async update(id: string, updateUserDto: UpdateUserDto) {
     return await this.userRepository.update(id, updateUserDto);
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     return await this.userRepository.delete(id);
   }
 }
