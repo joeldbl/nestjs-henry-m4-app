@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from './products/entities/product.entity';
 import { Repository } from 'typeorm';
@@ -62,9 +62,14 @@ export class AppService {
           const categoryObject = await this.categoryRepository.findOneBy({
             name: category,
           });
-          return { categoryObject, ...productWithoutCategory };
+
+          if (!categoryObject) throw new NotFoundException();
+
+          return { category: categoryObject, ...productWithoutCategory };
         }),
       );
+
+      console.log(products);
 
       products.forEach(async (product) => {
         const toSaveProduct = this.productsRepository.create(product);

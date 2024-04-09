@@ -13,7 +13,7 @@ export class ProductsRepository {
   ) {}
 
   async getProducts(): Promise<Product[]> {
-    return await this.productRepository.find();
+    return await this.productRepository.find({ relations: { category: true } });
   }
 
   async getProductById(id: string): Promise<Product | undefined> {

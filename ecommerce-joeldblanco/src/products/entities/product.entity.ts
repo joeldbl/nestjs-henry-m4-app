@@ -3,6 +3,7 @@ import { OrderDetails } from 'src/order_details/entities/order_details.entity';
 import {
   Column,
   Entity,
+  JoinColumn,
   JoinTable,
   ManyToMany,
   ManyToOne,
@@ -31,6 +32,7 @@ export class Product {
   imgUrl: string;
 
   @ManyToOne(() => Category, (category) => category.products)
+  @JoinColumn()
   category: Category;
 
   @ManyToMany(() => OrderDetails, (order_details) => order_details.products)

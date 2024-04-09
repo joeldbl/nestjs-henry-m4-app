@@ -17,12 +17,12 @@ export class Order {
   id: string = uuid();
 
   @ManyToOne(() => User, (user) => user.orders_id)
+  @JoinColumn()
   user_id: User;
 
   @Column({ type: 'date' })
   date: Date;
 
   @OneToOne(() => OrderDetails)
-  @JoinColumn()
   order_detail: OrderDetails;
 }

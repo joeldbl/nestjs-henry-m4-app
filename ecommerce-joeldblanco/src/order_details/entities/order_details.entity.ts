@@ -21,6 +21,7 @@ export class OrderDetails {
   price: number;
 
   @OneToOne(() => Order)
+  @JoinColumn()
   order_id: Order;
 
   @ManyToMany(() => Product, (product) => product.orders_details)
