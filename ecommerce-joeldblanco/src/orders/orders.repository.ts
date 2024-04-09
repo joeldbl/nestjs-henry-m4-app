@@ -28,7 +28,7 @@ export class OrdersRepository {
     if (!user) throw new NotFoundException('User not found');
 
     const order = this.ordersRepository.create({
-      user_id: user,
+      user,
       date: new Date(),
     });
     const savedOrder = await this.ordersRepository.save(order);
@@ -58,7 +58,7 @@ export class OrdersRepository {
 
     const orderDetail = this.orderDetailsRepository.create({
       price,
-      order_id: savedOrder,
+      order: savedOrder,
       products: dbProducts,
     });
 

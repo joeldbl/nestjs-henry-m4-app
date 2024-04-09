@@ -16,9 +16,9 @@ export class Order {
   @PrimaryGeneratedColumn('uuid')
   id: string = uuid();
 
-  @ManyToOne(() => User, (user) => user.orders_id)
-  @JoinColumn()
-  user_id: User;
+  @ManyToOne(() => User, (user) => user.orders)
+  @JoinColumn({ name: 'user_id' })
+  user: User;
 
   @Column({ type: 'date' })
   date: Date;
