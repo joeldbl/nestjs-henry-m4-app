@@ -63,7 +63,8 @@ export class AppService {
             name: category,
           });
 
-          if (!categoryObject) throw new NotFoundException();
+          if (!categoryObject)
+            throw new NotFoundException('Category not found');
 
           return { category: categoryObject, ...productWithoutCategory };
         }),

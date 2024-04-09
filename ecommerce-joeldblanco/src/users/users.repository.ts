@@ -23,7 +23,7 @@ export class UserRepository {
   async getUserById(id: string): Promise<User | undefined> {
     const user = await this.userRepository.findOneBy({ id });
 
-    if (!user) throw new NotFoundException();
+    if (!user) throw new NotFoundException('User not found');
 
     return user;
   }
@@ -31,7 +31,7 @@ export class UserRepository {
   async getUserByEmail(email: string): Promise<User | undefined> {
     const user = await this.userRepository.findOneBy({ email });
 
-    if (!user) throw new NotFoundException();
+    if (!user) throw new NotFoundException('User not found');
 
     return user;
   }
@@ -54,9 +54,9 @@ export class UserRepository {
   }
 
   async update(id: string, updateUserDto: UpdateUserDto): Promise<string> {
-    const toUpdateUser = this.userRepository.findOneBy({ id });
+    const user = this.userRepository.findOneBy({ id });
 
-    if (!toUpdateUser) throw new NotFoundException();
+    if (!user) throw new NotFoundException('User not found');
 
     const updatedUser = await this.userRepository.save({ ...updateUserDto });
 
@@ -64,8 +64,8 @@ export class UserRepository {
   }
 
   async delete(id: string): Promise<string> {
-    const toDeleteUser = await this.userRepository.findOneBy({ id });
-    if (!toDeleteUser) throw new NotFoundException();
+    const user = await this.userRepository.findOneBy({ id });
+    if (!user) throw new NotFoundException('User not found');
 
     await this.userRepository.delete({ id });
 

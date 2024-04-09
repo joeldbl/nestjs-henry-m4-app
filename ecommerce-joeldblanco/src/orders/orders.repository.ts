@@ -42,7 +42,7 @@ export class OrdersRepository {
           },
         });
 
-        if (!foundProduct) throw new NotFoundException();
+        if (!foundProduct) throw new NotFoundException('Product not found');
 
         foundProduct.stock -= 1;
         const savedProduct = await this.productsRepository.save(foundProduct);
@@ -62,9 +62,16 @@ export class OrdersRepository {
       products: dbProducts,
     });
 
-    const savedOrderDetail =
-      await this.orderDetailsRepository.save(orderDetail);
+    await this.orderDetailsRepository.save(orderDetail);
 
-    return savedOrderDetail;
+    return savedOrder;
+  }
+
+  async getOrder(id: string): Promise<Order> {
+    const order = await this.ordersRepository.findOneBy({ id });
+
+    if (!order) throw new NotFoundException('Order not found');
+
+    return order;
   }
 }
