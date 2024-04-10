@@ -70,8 +70,6 @@ export class AppService {
         }),
       );
 
-      console.log(products);
-
       products.forEach(async (product) => {
         const toSaveProduct = this.productsRepository.create(product);
         await this.productsRepository.save(toSaveProduct);

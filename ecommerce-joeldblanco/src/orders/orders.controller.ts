@@ -22,7 +22,7 @@ export class OrdersController {
 
   @Post()
   @UseInterceptors(OrdersInterceptor)
-  create(@Body(new ValidationPipe()) createOrderDto: CreateOrderDto) {
+  create(@Body() createOrderDto: CreateOrderDto) {
     return this.ordersService.create(createOrderDto);
   }
 
