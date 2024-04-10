@@ -5,7 +5,6 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -24,5 +23,6 @@ export class Order {
   date: Date;
 
   @OneToOne(() => OrderDetails)
+  @JoinColumn()
   order_detail: OrderDetails;
 }

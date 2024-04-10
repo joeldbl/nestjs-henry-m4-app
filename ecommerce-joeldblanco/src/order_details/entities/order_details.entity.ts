@@ -20,7 +20,7 @@ export class OrderDetails {
   @Column({ type: 'decimal', precision: 10, scale: 2, nullable: false })
   price: number;
 
-  @OneToOne(() => Order)
+  @OneToOne(() => Order, (order) => order.order_detail)
   @JoinColumn({ name: 'order_id' })
   order: Order;
 

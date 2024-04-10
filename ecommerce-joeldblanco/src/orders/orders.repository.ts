@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Order } from './entities/order.entity';
-import { MoreThan, Repository } from 'typeorm';
+import { MoreThan, Not, Repository } from 'typeorm';
 import { OrderDetails } from 'src/order_details/entities/order_details.entity';
 import { Product } from 'src/products/entities/product.entity';
 import { User } from 'src/users/entities/user.entity';
@@ -20,7 +20,7 @@ export class OrdersRepository {
     private readonly usersRepository: Repository<User>,
   ) {}
 
-  async create(createOrderDto: CreateOrderDto) {
+  async create(createOrderDto: CreateOrderDto): Promise<Order> {
     const { userId, products } = createOrderDto;
 
     const user = await this.usersRepository.findOneBy({ id: userId });
@@ -62,13 +62,25 @@ export class OrdersRepository {
       products: dbProducts,
     });
 
-    await this.orderDetailsRepository.save(orderDetail);
+    const savedOrderDetail =
+      await this.orderDetailsRepository.save(orderDetail);
+
+    savedOrder.order_detail = savedOrderDetail;
+    await this.ordersRepository.save(savedOrder);
 
     return savedOrder;
   }
 
   async getOrder(id: string): Promise<Order> {
-    const order = await this.ordersRepository.findOneBy({ id });
+    const order = await this.ordersRepository.findOne({
+      relations: [
+        'order_detail',
+        'order_detail.products',
+        'user',
+        'user.orders',
+      ],
+      where: { id },
+    });
 
     if (!order) throw new NotFoundException('Order not found');
 
