@@ -24,9 +24,9 @@ export class User {
   password: string;
 
   @Column({ type: 'integer' })
-  phone: string;
+  phone: number;
 
-  @Column({ length: 50, type: 'varchar', nullable: true })
+  @Column({ length: 20, type: 'varchar', nullable: true })
   country?: string;
 
   @Column({ type: 'text', nullable: false })

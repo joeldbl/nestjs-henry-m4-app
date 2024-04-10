@@ -10,13 +10,16 @@ import {
 } from 'class-validator';
 
 export class CreateUserDto {
-  @IsEmail()
-  email: string;
-
   @IsString()
   @MinLength(3)
-  @MaxLength(80)
+  @MaxLength(50)
+  @IsNotEmpty()
   name: string;
+
+  @IsEmail()
+  @MaxLength(50)
+  @IsNotEmpty()
+  email: string;
 
   @IsString()
   @IsStrongPassword({
@@ -26,12 +29,18 @@ export class CreateUserDto {
     minUppercase: 1,
     minSymbols: 1,
   })
-  @MaxLength(15)
+  @MaxLength(20)
+  @IsNotEmpty()
   password: string;
+
+  @IsNumber()
+  @IsNotEmpty()
+  phone: number;
 
   @IsString()
   @MinLength(3)
   @MaxLength(80)
+  @IsNotEmpty()
   address: string;
 
   @IsString()
@@ -42,10 +51,7 @@ export class CreateUserDto {
 
   @IsString()
   @MinLength(5)
-  @MaxLength(20)
+  @MaxLength(50)
   @IsOptional()
   city?: string;
-
-  @IsNumber()
-  phone: string;
 }
