@@ -12,10 +12,10 @@ export class AuthController {
     return 'Get Auth';
   }
 
-  // @Post('signin')
-  // signin(
-  //   @Body(new ValidationPipe()) AuthSigninDto: AuthSigninDto,
-  // ): Promise<Omit<User, 'password'>> {
-  //   return this.authService.authSignin(AuthSigninDto);
-  // }
+  @Post('signin')
+  signin(
+    @Body(new ValidationPipe()) AuthSigninDto: AuthSigninDto,
+  ): Promise<Omit<User, 'password'>> {
+    return this.authService.authSignin(AuthSigninDto);
+  }
 }

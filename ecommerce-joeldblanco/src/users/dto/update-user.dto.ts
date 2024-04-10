@@ -30,7 +30,7 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
     minUppercase: 1,
     minSymbols: 1,
   })
-  @MaxLength(20)
+  @MaxLength(60)
   @IsNotEmpty()
   password: string;
 

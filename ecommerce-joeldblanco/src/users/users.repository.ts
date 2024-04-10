@@ -37,18 +37,15 @@ export class UserRepository {
   }
 
   async create(user: CreateUserDto): Promise<string> {
-    // const { password, ...toSaveUser } = user;
-    // const hashedPassword = await bcrypt.hash(password, 10);
+    const { password, ...toSaveUser } = user;
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    // const newUser = this.userRepository.create({
-    //   password: hashedPassword,
-    //   ...toSaveUser,
-    // });
+    const newUser = this.userRepository.create({
+      password: hashedPassword,
+      ...toSaveUser,
+    });
 
-    // const savedUser = await this.userRepository.save(newUser);
-
-    const createdUser = await this.userRepository.save(user);
-    const savedUser = await this.userRepository.save(createdUser);
+    const savedUser = await this.userRepository.save(newUser);
 
     return savedUser.id;
   }

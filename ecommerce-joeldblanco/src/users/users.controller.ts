@@ -8,7 +8,6 @@ import {
   Put,
   UseInterceptors,
   ParseIntPipe,
-  ValidationPipe,
   Query,
   DefaultValuePipe,
   UseGuards,
