@@ -1,16 +1,28 @@
-import { Controller, Get, Post, Body, ValidationPipe } from '@nestjs/common';
+import {
+  Post,
+  Body,
+  Controller,
+  ValidationPipe,
+  UseInterceptors,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthSigninDto } from './dto/auth-signin.dto';
-import { User } from 'src/users/entities/user.entity';
+import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import { UsersInterceptor } from 'src/users/users.interceptor';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('signin')
-  signin(
-    @Body(new ValidationPipe()) AuthSigninDto: AuthSigninDto,
-  ): Promise<Omit<User, 'password'>> {
-    return this.authService.authSignin(AuthSigninDto);
+  @UseInterceptors(UsersInterceptor)
+  signin(@Body(new ValidationPipe()) authSigninDto: AuthSigninDto) {
+    return this.authService.authSignin(authSigninDto);
+  }
+
+  @Post('signup')
+  @UseInterceptors(UsersInterceptor)
+  signup(@Body(new ValidationPipe()) createUserDto: CreateUserDto) {
+    return this.authService.authSignup(createUserDto);
   }
 }

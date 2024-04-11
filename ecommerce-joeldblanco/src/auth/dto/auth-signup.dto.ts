@@ -1,21 +1,12 @@
 import {
+  IsEmail,
+  IsNotEmpty,
   IsString,
   IsStrongPassword,
-  IsEmail,
-  MinLength,
   MaxLength,
-  IsNumber,
-  IsNotEmpty,
-  IsOptional,
 } from 'class-validator';
 
-export class CreateUserDto {
-  @IsString()
-  @MinLength(3)
-  @MaxLength(50)
-  @IsNotEmpty()
-  name: string;
-
+export class AuthSignupDto {
   @IsEmail()
   @MaxLength(50)
   @IsNotEmpty()
@@ -44,26 +35,4 @@ export class CreateUserDto {
   @MaxLength(60)
   @IsNotEmpty()
   passwordConfirmation: string;
-
-  @IsNumber()
-  @IsNotEmpty()
-  phone: number;
-
-  @IsString()
-  @MinLength(3)
-  @MaxLength(80)
-  @IsNotEmpty()
-  address: string;
-
-  @IsString()
-  @MinLength(5)
-  @MaxLength(20)
-  @IsOptional()
-  country?: string;
-
-  @IsString()
-  @MinLength(5)
-  @MaxLength(50)
-  @IsOptional()
-  city?: string;
 }

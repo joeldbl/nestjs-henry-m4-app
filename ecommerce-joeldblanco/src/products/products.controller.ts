@@ -19,8 +19,8 @@ import { AuthGuard } from 'src/auth/auth.guard';
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
-  @UseGuards(AuthGuard)
   @Post()
+  // @UseGuards(AuthGuard) //TODO: Verify this route doesn't need AuthGuard guard
   create(@Body() createProductDto: CreateProductDto) {
     return this.productsService.create(createProductDto);
   }
@@ -35,8 +35,8 @@ export class ProductsController {
     return this.productsService.findOne(id);
   }
 
-  @UseGuards(AuthGuard)
   @Put(':id')
+  @UseGuards(AuthGuard)
   update(
     @Param('id', ParseUUIDPipe) id: string,
     @Body() updateProductDto: UpdateProductDto,
@@ -44,8 +44,8 @@ export class ProductsController {
     return this.productsService.update(id, updateProductDto);
   }
 
-  @UseGuards(AuthGuard)
   @Delete(':id')
+  // @UseGuards(AuthGuard) //TODO: Verify this route doesn't need AuthGuard guard
   remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.productsService.remove(id);
   }

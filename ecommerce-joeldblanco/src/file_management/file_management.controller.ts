@@ -8,15 +8,18 @@ import {
   ParseFilePipe,
   MaxFileSizeValidator,
   FileTypeValidator,
+  UseGuards,
 } from '@nestjs/common';
 import { FileManagementService } from './file_management.service';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('files')
 export class FileManagementController {
   constructor(private readonly fileManagementService: FileManagementService) {}
 
   @Post('/uploadImage/:id')
+  @UseGuards(AuthGuard)
   @UseInterceptors(FileInterceptor('file'))
   create(
     @Param('id', ParseUUIDPipe) id: string,

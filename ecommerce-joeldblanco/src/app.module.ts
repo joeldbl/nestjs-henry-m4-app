@@ -14,6 +14,7 @@ import { Product } from './products/entities/product.entity';
 import { Category } from './categories/entities/category.entity';
 import { FileManagementModule } from './file_management/file_management.module';
 import { CloudinaryConfig } from './config/cloudinary';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -33,6 +34,11 @@ import { CloudinaryConfig } from './config/cloudinary';
     CategoriesModule,
     OrdersModule,
     FileManagementModule,
+    JwtModule.register({
+      global: true,
+      signOptions: { expiresIn: '1h' },
+      secret: process.env.JWT_SECRET,
+    }),
   ],
   controllers: [AppController],
   providers: [AppService, CloudinaryConfig],

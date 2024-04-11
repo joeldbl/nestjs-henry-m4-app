@@ -14,14 +14,12 @@ export class UsersInterceptor implements NestInterceptor {
       map((value) => {
         if (Array.isArray(value))
           return value.map((user) => {
-            let userCopy = { ...user };
-            delete userCopy.password;
-            return userCopy;
+            delete user.password;
+            return user;
           });
 
-        let userCopy = { ...value };
-        delete userCopy.password;
-        return userCopy;
+        delete value.password;
+        return value;
       }),
     );
   }
