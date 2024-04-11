@@ -7,8 +7,8 @@ import {
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthSigninDto } from './dto/auth-signin.dto';
-import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { UsersInterceptor } from 'src/users/users.interceptor';
+import { AuthSignupDto } from './dto/auth-signup.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -22,7 +22,7 @@ export class AuthController {
 
   @Post('signup')
   @UseInterceptors(UsersInterceptor)
-  signup(@Body(new ValidationPipe()) createUserDto: CreateUserDto) {
-    return this.authService.authSignup(createUserDto);
+  signup(@Body(new ValidationPipe()) authSignupDto: AuthSignupDto) {
+    return this.authService.authSignup(authSignupDto);
   }
 }

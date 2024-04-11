@@ -9,8 +9,8 @@ import * as bcrypt from 'bcrypt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/users/entities/user.entity';
 import { Repository } from 'typeorm';
-import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { JwtService } from '@nestjs/jwt';
+import { AuthSignupDto } from './dto/auth-signup.dto';
 
 @Injectable()
 export class AuthService {
@@ -45,8 +45,8 @@ export class AuthService {
     return { success: 'User succefully logged in', token };
   }
 
-  async authSignup(createUserDto: CreateUserDto) {
-    const { password, passwordConfirmation, ...user } = createUserDto;
+  async authSignup(authSignupDto: AuthSignupDto) {
+    const { password, passwordConfirmation, ...user } = authSignupDto;
 
     if (password !== passwordConfirmation)
       throw new BadRequestException(

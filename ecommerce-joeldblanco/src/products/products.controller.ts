@@ -20,7 +20,7 @@ export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
   @Post()
-  // @UseGuards(AuthGuard) //TODO: Verify this route doesn't need AuthGuard guard
+  @UseGuards(AuthGuard)
   create(@Body() createProductDto: CreateProductDto) {
     return this.productsService.create(createProductDto);
   }
@@ -45,7 +45,7 @@ export class ProductsController {
   }
 
   @Delete(':id')
-  // @UseGuards(AuthGuard) //TODO: Verify this route doesn't need AuthGuard guard
+  @UseGuards(AuthGuard)
   remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.productsService.remove(id);
   }
