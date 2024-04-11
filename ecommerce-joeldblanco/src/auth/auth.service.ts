@@ -8,12 +8,13 @@ export class AuthService {
   constructor(private readonly userRepository: UserRepository) {}
 
   async authSignin(authSigninDto: AuthSigninDto) {
-    const { email, pass } = authSigninDto;
-
-    const user = await this.userRepository.getUserByEmail(email);
+    const user = await this.userRepository.getUserByEmail(authSigninDto.email);
     if (!user) throw new UnauthorizedException();
 
-    const passwordCompare = await bcrypt.compare(pass, user.password);
+    const passwordCompare = await bcrypt.compare(
+      authSigninDto.password,
+      user.password,
+    );
     if (!passwordCompare) throw new UnauthorizedException();
 
     const { password, ...result } = user;

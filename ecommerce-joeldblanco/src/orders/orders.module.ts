@@ -5,7 +5,6 @@ import { OrdersRepository } from './orders.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Order } from './entities/order.entity';
 import { OrderDetails } from 'src/order_details/entities/order_details.entity';
-import { ProductsRepository } from 'src/products/products.repository';
 import { Product } from 'src/products/entities/product.entity';
 import { User } from 'src/users/entities/user.entity';
 

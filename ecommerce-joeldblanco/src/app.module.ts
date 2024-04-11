@@ -12,6 +12,8 @@ import { CategoriesModule } from './categories/categories.module';
 import { OrdersModule } from './orders/orders.module';
 import { Product } from './products/entities/product.entity';
 import { Category } from './categories/entities/category.entity';
+import { FileManagementModule } from './file_management/file_management.module';
+import { CloudinaryConfig } from './config/cloudinary';
 
 @Module({
   imports: [
@@ -30,8 +32,9 @@ import { Category } from './categories/entities/category.entity';
     AuthModule,
     CategoriesModule,
     OrdersModule,
+    FileManagementModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, CloudinaryConfig],
 })
 export class AppModule {}

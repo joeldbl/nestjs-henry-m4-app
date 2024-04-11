@@ -7,11 +7,6 @@ import { User } from 'src/users/entities/user.entity';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Get()
-  getAuth(): string {
-    return 'Get Auth';
-  }
-
   @Post('signin')
   signin(
     @Body(new ValidationPipe()) AuthSigninDto: AuthSigninDto,
