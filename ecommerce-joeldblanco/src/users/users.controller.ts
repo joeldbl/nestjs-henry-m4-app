@@ -16,13 +16,17 @@ import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersInterceptor } from './users.interceptor';
 import { AuthGuard } from 'src/auth/auth.guard';
+import { RolesGuard } from 'src/guards/roles/roles.guard';
+import { Roles } from 'src/decorators/roles.decorator';
+import { Role } from 'src/enums/role.enums';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  @UseGuards(AuthGuard)
+  @Roles(Role.Admin)
+  @UseGuards(AuthGuard, RolesGuard)
   @UseInterceptors(UsersInterceptor)
   findAll(
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,

@@ -27,10 +27,10 @@ export class AuthGuard implements CanActivate {
     const headerToken: string = authorizationHeader.split(' ')[1];
     try {
       const secret = process.env.JWT_SECRET;
+
       const payload = this.jwtService.verify(headerToken, {
         secret,
       });
-
       payload.iat = new Date(payload.iat * 1000);
       payload.exp = new Date(payload.exp * 1000);
 
@@ -40,7 +40,5 @@ export class AuthGuard implements CanActivate {
     } catch (error) {
       throw new UnauthorizedException('Invalid token');
     }
-
-    return true;
   }
 }

@@ -11,6 +11,7 @@ import { User } from 'src/users/entities/user.entity';
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 import { AuthSignupDto } from './dto/auth-signup.dto';
+import { Role } from 'src/enums/role.enums';
 
 @Injectable()
 export class AuthService {
@@ -38,6 +39,7 @@ export class AuthService {
       sub: user.id,
       id: user.id,
       email: user.email,
+      role: [user.isAdmin ? Role.Admin : Role.User],
     };
 
     const token = this.jwtService.sign(userPayload);

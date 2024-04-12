@@ -26,6 +26,9 @@ export class User {
   @Column({ type: 'integer' })
   phone: number;
 
+  @Column({ default: false })
+  isAdmin: boolean;
+
   @Column({ length: 20, type: 'varchar', nullable: true })
   country?: string;
 

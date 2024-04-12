@@ -7,6 +7,7 @@ import {
   IsNumber,
   IsNotEmpty,
   IsOptional,
+  IsEmpty,
 } from 'class-validator';
 
 export class CreateUserDto {
@@ -54,6 +55,9 @@ export class CreateUserDto {
   @MaxLength(80)
   @IsNotEmpty()
   address: string;
+
+  @IsEmpty()
+  isAdmin: boolean;
 
   @IsString()
   @MinLength(5)

@@ -7,6 +7,7 @@ import {
   IsNumber,
   IsNotEmpty,
   IsOptional,
+  IsEmpty,
 } from 'class-validator';
 
 export class AuthSignupDto {
@@ -54,6 +55,9 @@ export class AuthSignupDto {
   @MaxLength(80)
   @IsNotEmpty()
   address: string;
+
+  @IsEmpty()
+  isAdmin: boolean;
 
   @IsString()
   @MinLength(5)

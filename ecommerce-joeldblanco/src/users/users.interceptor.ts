@@ -19,6 +19,7 @@ export class UsersInterceptor implements NestInterceptor {
           });
 
         delete value.password;
+        delete value.isAdmin;
         return value;
       }),
     );
