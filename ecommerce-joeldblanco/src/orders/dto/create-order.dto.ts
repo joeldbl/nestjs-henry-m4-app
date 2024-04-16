@@ -8,5 +8,6 @@ export class CreateOrderDto extends PickType(Product, ['id']) {
   userId: string;
 
   @IsArray()
+  @IsNotEmpty({ message: 'El array de productos es requerido' })
   products: Product[];
 }

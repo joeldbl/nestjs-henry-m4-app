@@ -13,11 +13,14 @@ import {
 import { FileManagementService } from './file_management.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthGuard } from 'src/auth/auth.guard';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Products')
 @Controller('files')
 export class FileManagementController {
   constructor(private readonly fileManagementService: FileManagementService) {}
 
+  @ApiBearerAuth()
   @Post('/uploadImage/:id')
   @UseGuards(AuthGuard)
   @UseInterceptors(FileInterceptor('file'))
