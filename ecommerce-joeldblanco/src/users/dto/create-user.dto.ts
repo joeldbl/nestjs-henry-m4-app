@@ -30,7 +30,7 @@ export class CreateUserDto {
     minUppercase: 1,
     minSymbols: 1,
   })
-  @MaxLength(60)
+  @MaxLength(20)
   @IsNotEmpty()
   password: string;
 
@@ -42,7 +42,7 @@ export class CreateUserDto {
     minUppercase: 1,
     minSymbols: 1,
   })
-  @MaxLength(60)
+  @MaxLength(20)
   @IsNotEmpty()
   passwordConfirmation: string;
 

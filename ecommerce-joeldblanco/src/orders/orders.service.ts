@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
-import { UpdateOrderDto } from './dto/update-order.dto';
 import { OrdersRepository } from './orders.repository';
 import { Order } from './entities/order.entity';
 
@@ -9,7 +8,7 @@ export class OrdersService {
   constructor(private readonly orderRepository: OrdersRepository) {}
 
   async create(createOrderDto: CreateOrderDto): Promise<Order> {
-    return await this.orderRepository.create(createOrderDto);
+    return await this.orderRepository.addOrder(createOrderDto);
   }
 
   findAll() {

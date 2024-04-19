@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Order } from './entities/order.entity';
-import { MoreThan, Not, Repository } from 'typeorm';
+import { MoreThan, Repository } from 'typeorm';
 import { OrderDetails } from 'src/order_details/entities/order_details.entity';
 import { Product } from 'src/products/entities/product.entity';
 import { User } from 'src/users/entities/user.entity';
@@ -20,7 +20,7 @@ export class OrdersRepository {
     private readonly usersRepository: Repository<User>,
   ) {}
 
-  async create(createOrderDto: CreateOrderDto): Promise<Order> {
+  async addOrder(createOrderDto: CreateOrderDto): Promise<Order> {
     const { userId, products } = createOrderDto;
 
     const user = await this.usersRepository.findOneBy({ id: userId });

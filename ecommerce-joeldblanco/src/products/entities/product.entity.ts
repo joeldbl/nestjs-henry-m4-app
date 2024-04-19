@@ -4,7 +4,6 @@ import {
   Column,
   Entity,
   JoinColumn,
-  JoinTable,
   ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
@@ -28,11 +27,15 @@ export class Product {
   @Column({ type: 'numeric', nullable: false })
   stock: number;
 
-  @Column({ type: 'varchar', default: 'https://placehold.co/180x180' })
+  @Column({
+    name: 'image_url',
+    type: 'varchar',
+    default: 'https://placehold.co/180x180',
+  })
   imgUrl: string;
 
   @ManyToOne(() => Category, (category) => category.products)
-  @JoinColumn()
+  @JoinColumn({ name: 'category_id' })
   category: Category;
 
   @ManyToMany(() => OrderDetails, (order_details) => order_details.products)

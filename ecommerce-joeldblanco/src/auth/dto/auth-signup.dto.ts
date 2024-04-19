@@ -8,7 +8,6 @@ import {
   IsNumber,
   IsNotEmpty,
   IsOptional,
-  IsEmpty,
 } from 'class-validator';
 
 export class AuthSignupDto {

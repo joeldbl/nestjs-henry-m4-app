@@ -20,7 +20,7 @@ export class OrdersInterceptor implements NestInterceptor {
     return next.handle().pipe(
       map(async (response) => {
         const newResponse = await this.orderRepository.find({
-          relations: { order_detail: true, user: true },
+          relations: { order_detail: true, user: false },
           where: {
             id: response.id,
           },

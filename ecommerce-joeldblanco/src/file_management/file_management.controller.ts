@@ -13,7 +13,7 @@ import {
 import { FileManagementService } from './file_management.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthGuard } from 'src/auth/auth.guard';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Products')
 @Controller('files')
@@ -22,6 +22,18 @@ export class FileManagementController {
 
   @ApiBearerAuth()
   @Post('/uploadImage/:id')
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        file: {
+          type: 'string',
+          format: 'binary',
+        },
+      },
+    },
+  })
   @UseGuards(AuthGuard)
   @UseInterceptors(FileInterceptor('file'))
   create(

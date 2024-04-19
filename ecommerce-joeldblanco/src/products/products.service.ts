@@ -12,8 +12,8 @@ export class ProductsService {
     return await this.productsRepository.create(createProductDto);
   }
 
-  async findAll(): Promise<Product[]> {
-    return await this.productsRepository.getProducts();
+  async findAll(page: number, limit: number): Promise<Product[]> {
+    return await this.productsRepository.getProducts(page, limit);
   }
 
   async findOne(id: string): Promise<Product | undefined> {
@@ -29,5 +29,9 @@ export class ProductsService {
 
   async remove(id: string): Promise<string> {
     return await this.productsRepository.delete(id);
+  }
+
+  async seedProducts() {
+    return await this.productsRepository.productsSeeder();
   }
 }
