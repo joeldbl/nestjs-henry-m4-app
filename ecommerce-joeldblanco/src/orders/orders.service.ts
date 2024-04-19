@@ -18,12 +18,4 @@ export class OrdersService {
   async findOne(id: string): Promise<Order> {
     return await this.orderRepository.getOrder(id);
   }
-
-  // update(id: string, updateOrderDto: UpdateOrderDto) {
-  //   return `This action updates a #${id} order`;
-  // }
-
-  // remove(id: string) {
-  //   return `This action removes a #${id} order`;
-  // }
 }
