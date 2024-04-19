@@ -24,13 +24,15 @@ export class CategoriesRepository {
               .orIgnore(true)
               .execute();
           } catch (error) {
-            console.error('Error inserting category:', error);
+            throw error;
           }
         }
       }
     } catch (err) {
       console.error('Error reading file:', err);
     }
+
+    return await this.categoryRepository.find();
   }
 
   async getCategories() {

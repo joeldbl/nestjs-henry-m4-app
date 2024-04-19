@@ -7,7 +7,7 @@ export class CategoriesController {
 
   @Get('seeder')
   categoriesSeeder() {
-    this.categoriesService.seedCategories();
+    return this.categoriesService.seedCategories();
   }
 
   @Get()
