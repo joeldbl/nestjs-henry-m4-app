@@ -14,6 +14,9 @@ import { FileManagementService } from './file_management.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
+import { RolesGuard } from 'src/guards/roles/roles.guard';
+import { Role } from 'src/enums/role.enums';
+import { Roles } from 'src/decorators/roles.decorator';
 
 @ApiTags('Products')
 @Controller('files')
@@ -34,7 +37,8 @@ export class FileManagementController {
       },
     },
   })
-  @UseGuards(AuthGuard)
+  @Roles(Role.Admin)
+  @UseGuards(AuthGuard, RolesGuard)
   @UseInterceptors(FileInterceptor('file'))
   create(
     @Param('id', ParseUUIDPipe) id: string,
