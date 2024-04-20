@@ -7,10 +7,12 @@ import {
   ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
+  Unique,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 
 @Entity()
+@Unique(['name'])
 export class Product {
   @PrimaryGeneratedColumn('uuid')
   id: string = uuid();

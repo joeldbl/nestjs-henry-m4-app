@@ -11,10 +11,6 @@ export class OrdersService {
     return await this.orderRepository.addOrder(createOrderDto);
   }
 
-  findAll() {
-    return `This action returns all orders`;
-  }
-
   async findOne(id: string): Promise<Order> {
     return await this.orderRepository.getOrder(id);
   }

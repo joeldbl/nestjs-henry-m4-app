@@ -21,18 +21,23 @@ export class OrdersRepository {
   ) {}
 
   async addOrder(createOrderDto: CreateOrderDto): Promise<Order> {
+    // Destructure the userId and products from the createOrderDto
     const { userId, products } = createOrderDto;
 
+    // Find the user by the userId
     const user = await this.usersRepository.findOneBy({ id: userId });
 
+    // Throw a NotFoundException if the user is not found
     if (!user) throw new NotFoundException('User not found');
 
+    // Create an order with the user and the current date
     const order = this.ordersRepository.create({
       user,
       date: new Date(),
     });
     const savedOrder = await this.ordersRepository.save(order);
 
+    // Create an array of products with the products from the createOrderDto
     let dbProducts: Product[] = await Promise.all(
       products.map(async (product) => {
         const foundProduct = await this.productsRepository.findOne({
@@ -51,27 +56,37 @@ export class OrdersRepository {
       }),
     );
 
+    // Calculate the price of the products
     const price: number = dbProducts.reduce(
       (acc: number, product: Product) => Number(acc) + Number(product.price),
       0,
     );
 
+    // Create an order detail with the price, the saved order, and the products
     const orderDetail = this.orderDetailsRepository.create({
       price,
       order: savedOrder,
       products: dbProducts,
     });
-
     const savedOrderDetail =
       await this.orderDetailsRepository.save(orderDetail);
-
     savedOrder.order_detail = savedOrderDetail;
     await this.ordersRepository.save(savedOrder);
 
-    return savedOrder;
+    // Find the order with the order detail
+    const resultOrder = await this.ordersRepository.findOne({
+      relations: ['order_detail'],
+      where: { id: savedOrder.id },
+    });
+
+    // Throw a NotFoundException if the order is not found
+    if (!resultOrder) throw new NotFoundException('Order not found');
+
+    return resultOrder;
   }
 
   async getOrder(id: string): Promise<Order> {
+    // Find the order by the id with the order detail, the user, and the user's orders
     const order = await this.ordersRepository.findOne({
       relations: [
         'order_detail',
@@ -82,6 +97,7 @@ export class OrdersRepository {
       where: { id },
     });
 
+    // Throw a NotFoundException if the order is not found
     if (!order) throw new NotFoundException('Order not found');
 
     return order;

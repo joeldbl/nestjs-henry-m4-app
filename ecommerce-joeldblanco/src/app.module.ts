@@ -25,10 +25,10 @@ import { JwtModule } from '@nestjs/jwt';
       useFactory: (configService: ConfigService) =>
         configService.get('typeorm') as DataSourceOptions,
     }),
-    UsersModule,
-    ProductsModule,
-    AuthModule,
     CategoriesModule,
+    ProductsModule,
+    UsersModule,
+    AuthModule,
     OrdersModule,
     FileManagementModule,
     JwtModule.register({

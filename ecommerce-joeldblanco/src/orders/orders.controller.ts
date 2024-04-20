@@ -5,12 +5,10 @@ import {
   Body,
   Param,
   ParseUUIDPipe,
-  UseInterceptors,
   UseGuards,
 } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { CreateOrderDto } from './dto/create-order.dto';
-import { OrdersInterceptor } from './orders.interceptor';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
@@ -22,14 +20,8 @@ export class OrdersController {
   @ApiBearerAuth()
   @Post()
   @UseGuards(AuthGuard)
-  @UseInterceptors(OrdersInterceptor)
   create(@Body() createOrderDto: CreateOrderDto) {
     return this.ordersService.create(createOrderDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.ordersService.findAll();
   }
 
   @ApiBearerAuth()

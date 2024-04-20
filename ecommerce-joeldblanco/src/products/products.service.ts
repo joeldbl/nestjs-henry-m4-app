@@ -1,12 +1,16 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ProductsRepository } from './products.repository';
 import { Product } from './entities/product.entity';
 
 @Injectable()
-export class ProductsService {
+export class ProductsService implements OnApplicationBootstrap {
   constructor(private readonly productsRepository: ProductsRepository) {}
+
+  async onApplicationBootstrap() {
+    await this.seedProducts();
+  }
 
   async create(createProductDto: CreateProductDto): Promise<string> {
     return await this.productsRepository.create(createProductDto);

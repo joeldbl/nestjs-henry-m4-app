@@ -91,12 +91,15 @@ export class ProductsRepository {
 
         if (!category) throw new NotFoundException('Category not found');
 
-        const newProduct = this.productRepository.create({
-          ...product,
-          category,
-        });
-
-        await this.productRepository.save(newProduct);
+        await this.productRepository.upsert(
+          [
+            {
+              ...product,
+              category,
+            },
+          ],
+          ['name'],
+        );
       }
     }
 

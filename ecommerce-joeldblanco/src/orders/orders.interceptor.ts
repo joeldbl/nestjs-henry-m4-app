@@ -4,29 +4,15 @@ import {
   Injectable,
   NestInterceptor,
 } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 import { Observable, map } from 'rxjs';
-import { Repository } from 'typeorm';
-import { Order } from './entities/order.entity';
-
 @Injectable()
 export class OrdersInterceptor implements NestInterceptor {
-  constructor(
-    @InjectRepository(Order)
-    private readonly orderRepository: Repository<Order>,
-  ) {}
-
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     return next.handle().pipe(
       map(async (response) => {
-        const newResponse = await this.orderRepository.find({
-          relations: { order_detail: true, user: false },
-          where: {
-            id: response.id,
-          },
-        });
-
-        return newResponse;
+        delete response.user.password;
+        delete response.user.isAdmin;
+        return response;
       }),
     );
   }
