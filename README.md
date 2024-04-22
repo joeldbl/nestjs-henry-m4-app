@@ -1,73 +1,60 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Ecommerce hecho con NestJS
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+¡Bienvenido a nuestro Ecommerce desarrollado con NestJS!
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Descripción
 
-## Description
+Este proyecto es un Ecommerce construido utilizando NestJS, un framework de Node.js altamente modular y escalable. Ofrecemos una plataforma fácil de usar para comprar y vender productos en línea.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Funcionalidades
 
-## Installation
+- Registro de usuarios
+- Inicio de sesión de usuarios
+- Búsqueda de productos
+- Agregar productos al carrito
+- Realizar pedidos
+- Ver historial de pedidos
 
-```bash
-$ npm install
-```
+## Requisitos previos
 
-## Running the app
+Asegúrate de tener Node.js y npm instalados en tu sistema antes de comenzar.
+
+## Instalación
+
+1. Clona este repositorio en tu máquina local.
+2. Navega al directorio del proyecto en tu terminal.
+3. Ejecuta el comando `npm install` para instalar las dependencias.
+
+## Uso
+
+### Correr localmente
+
+Para ejecutar el proyecto localmente, utiliza el siguiente comando:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm start
 ```
 
-## Test
+Esto iniciará el servidor local en tu máquina.
+
+### Levantar imagen de Docker
+
+Si prefieres ejecutar el proyecto utilizando Docker, utiliza el siguiente comando:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+docker compose up
 ```
 
-## Support
+### Acceso al proyecto deployado
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+El proyecto está deployado en la siguiente dirección:
 
-## Stay in touch
+[https://nestjs-henry-m4-app-latest.onrender.com/api](https://nestjs-henry-m4-app-latest.onrender.com/api)
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+¡Visítanos y prueba los endpoints del Ecommerce!
 
-## License
+### Contribuir
+¡Estamos abiertos a contribuciones! Si quieres mejorar este proyecto, no dudes en enviar un pull request.
 
-Nest is [MIT licensed](LICENSE).
+### Contacto
+Si tienes alguna pregunta o sugerencia, no dudes en ponerte en contacto conmigo [joeld.blanco@gmail.com](mailto:joeld.blanco@gmail.com)
