@@ -38,6 +38,8 @@ npm start
 
 This will start the local server on your machine.
 
+Navigate to [http://localhost:3000/api](http://localhost:3000/api) to try out the endpoints.
+
 ### Run Docker image
 
 If you prefer to run the project using Docker, use the following command:
@@ -45,6 +47,10 @@ If you prefer to run the project using Docker, use the following command:
 ```bash
 docker compose up
 ```
+
+(Remember to have Docker running and environment variables correctly configured)
+
+Navigate to [http://localhost:3000/api](http://localhost:3000/api) to try out the endpoints.
 
 ### Access the deployed project
 
