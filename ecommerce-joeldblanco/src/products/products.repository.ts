@@ -39,11 +39,15 @@ export class ProductsRepository {
   }
 
   async create(product: CreateProductDto): Promise<string> {
-    const newProduct = this.productRepository.create(product);
+    await this.productRepository.upsert(product, ['name']);
 
-    const createdProduct = await this.productRepository.save(newProduct);
+    const foundProduct = await this.productRepository.findOneBy({
+      name: product.name,
+    });
 
-    return createdProduct.id;
+    if (!foundProduct) throw new NotFoundException('Product not found');
+
+    return foundProduct.id;
   }
 
   async update(
