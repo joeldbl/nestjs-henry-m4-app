@@ -1,60 +1,62 @@
-# Ecommerce hecho con NestJS
+# Ecommerce built with NestJS
 
-¡Bienvenido a nuestro Ecommerce desarrollado con NestJS!
+Welcome to our Ecommerce developed with NestJS!
 
-## Descripción
+## Description
 
-Este proyecto es un Ecommerce construido utilizando NestJS, un framework de Node.js altamente modular y escalable. Ofrecemos una plataforma fácil de usar para comprar y vender productos en línea.
+This project is an Ecommerce built using NestJS, a highly modular and scalable Node.js framework. We offer an easy-to-use platform for buying and selling products online.
 
-## Funcionalidades
+## Features
 
-- Registro de usuarios
-- Inicio de sesión de usuarios
-- Búsqueda de productos
-- Agregar productos al carrito
-- Realizar pedidos
-- Ver historial de pedidos
+- User registration
+- User login
+- Product search
+- Add products to cart
+- Place orders
+- View order history
 
-## Requisitos previos
+## Prerequisites
 
-Asegúrate de tener Node.js y npm instalados en tu sistema antes de comenzar.
+Make sure you have Node.js and npm installed on your system before starting.
 
-## Instalación
+## Installation
 
-1. Clona este repositorio en tu máquina local.
-2. Navega al directorio del proyecto en tu terminal.
-3. Ejecuta el comando `npm install` para instalar las dependencias.
+1. Clone this repository to your local machine.
+2. Navigate to the project directory in your terminal.
+3. Run the command `npm install` to install the dependencies.
 
-## Uso
+## Usage
 
-### Correr localmente
+### Run locally
 
-Para ejecutar el proyecto localmente, utiliza el siguiente comando:
+To run the project locally, use the following command:
 
 ```bash
 npm start
 ```
 
-Esto iniciará el servidor local en tu máquina.
+This will start the local server on your machine.
 
-### Levantar imagen de Docker
+### Run Docker image
 
-Si prefieres ejecutar el proyecto utilizando Docker, utiliza el siguiente comando:
+If you prefer to run the project using Docker, use the following command:
 
 ```bash
 docker compose up
 ```
 
-### Acceso al proyecto deployado
+### Access the deployed project
 
-El proyecto está deployado en la siguiente dirección:
+The project is deployed at the following URL:
 
 [https://nestjs-henry-m4-app-latest.onrender.com/api](https://nestjs-henry-m4-app-latest.onrender.com/api)
 
-¡Visítanos y prueba los endpoints del Ecommerce!
+Visit us and try out the Ecommerce endpoints!
 
-### Contribuir
-¡Estamos abiertos a contribuciones! Si quieres mejorar este proyecto, no dudes en enviar un pull request.
+### Contributing
 
-### Contacto
-Si tienes alguna pregunta o sugerencia, no dudes en ponerte en contacto conmigo [joeld.blanco@gmail.com](mailto:joeld.blanco@gmail.com)
+We are open to contributions! If you want to improve this project, feel free to submit a pull request.
+
+### Contact
+
+If you have any questions or suggestions, don't hesitate to contact me at [joeld.blanco@gmail.com](mailto:joeld.blanco@gmail.com)
