@@ -24,6 +24,7 @@ Make sure you have Node.js and npm installed on your system before starting.
 1. Clone this repository to your local machine.
 2. Navigate to the project directory in your terminal.
 3. Run the command `npm install` to install the dependencies.
+4. Make a copy of the `.env.example` file, rename it to `.env`, and fill it with the necessary environment variables for your execution.
 
 ## Usage
 
